@@ -1,10 +1,23 @@
 public class main {
     /*
-    Making fuel for the LAMBCHOP's reactor core is a tricky process because of the exotic matter involved. It starts as raw ore, then during processing, begins randomly changing between forms, eventually reaching a stable form. There may be multiple stable forms that a sample could ultimately reach, not all of which are useful as fuel.
+    Making fuel for the LAMBCHOP's reactor core is a tricky process because of the exotic matter involved.
+     It starts as raw ore, then during processing, begins randomly changing between forms, eventually reaching a stable form.
+      There may be multiple stable forms that a sample could ultimately reach, not all of which are useful as fuel.
 
-Commander Lambda has tasked you to help the scientists increase fuel creation efficiency by predicting the end state of a given ore sample. You have carefully studied the different structures that the ore can take and which transitions it undergoes. It appears that, while random, the probability of each structure transforming is fixed. That is, each time the ore is in 1 state, it has the same probabilities of entering the next state (which might be the same state).  You have recorded the observed transitions in a matrix. The others in the lab have hypothesized more exotic forms that the ore can become, but you haven't seen all of them.
+Commander Lambda has tasked you to help the scientists increase fuel creation efficiency by predicting the end
+ state of a given ore sample. You have carefully studied the different structures that the ore can take and which
+  transitions it undergoes. It appears that, while random, the probability of each structure transforming is fixed.
+   That is, each time the ore is in 1 state, it has the same probabilities of entering the
+    next state (which might be the same state).  You have recorded the observed transitions in a matrix.
+     The others in the lab have hypothesized more exotic forms that the ore can become, but you haven't seen all of them.
 
-Write a function solution(m) that takes an array of array of nonnegative ints representing how many times that state has gone to the next state and return an array of ints for each terminal state giving the exact probabilities of each terminal state, represented as the numerator for each state, then the denominator for all of them at the end and in simplest form. The matrix is at most 10 by 10. It is guaranteed that no matter which state the ore is in, there is a path from that state to a terminal state. That is, the processing will always eventually end in a stable state. The ore starts in state 0. The denominator will fit within a signed 32-bit integer during the calculation, as long as the fraction is simplified regularly.
+Write a function solution(m) that takes an array of array of nonnegative ints representing how many times that state has
+ gone to the next state and return an array of ints for each terminal state giving the exact probabilities
+  of each terminal state, represented as the numerator for each state, then the denominator for all of them at the end
+   and in simplest form. The matrix is at most 10 by 10. It is guaranteed that no matter which state the ore is in,
+    there is a path from that state to a terminal state. That is, the processing will always eventually
+     end in a stable state. The ore starts in state 0. The denominator will fit within a
+      signed 32-bit integer during the calculation, as long as the fraction is simplified regularly.
 
 For example, consider the matrix m:
 [
@@ -52,13 +65,13 @@ Output:
 
 -- Python cases --
 Input:
-solution.solution([
-[0, 2, 1, 0, 0],
-[0, 0, 0, 3, 4],
-[0, 0, 0, 0, 0],
-[0, 0, 0, 0,0],
-[0, 0, 0, 0, 0]
-])
+solution.solution({
+{0, 2, 1, 0, 0},
+{0, 0, 0, 3, 4},
+{0, 0, 0, 0, 0},
+{0, 0, 0, 0,0},
+{0, 0, 0, 0, 0}
+})
 Output:
     [7, 6, 8, 21]
 
@@ -69,14 +82,31 @@ Output:
 
     */
     public static void main(String[] args) {
-        //int[][] m = {{0, 1, 0, 3, 0}, {4, 0, 2, 0, 0}, {0, 0, 0, 0, 0}, {3, 0, 0, 0, 2}, {0, 0, 0, 0, 0}};
-        int[][] m = {{0, 1, 0, 0, 0, 1}, {4, 0, 0, 3, 2, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}};
+        //int[][] m ={{0, 2, 1, 0, 0}, {0, 0, 0, 3, 4}, {0, 0, 0, 0, 0}, {0, 0, 0, 0,0}, {0, 0, 0, 0, 0}};
+        int[][] m = {
+                {0, 1, 0, 3, 0},
+                {4, 0, 2, 0, 0},
+                {0, 0, 0, 0, 0},
+                {3, 0, 0, 0, 2},
+                {0, 0, 0, 0, 0}
+        };
+        //int[][] m = {{0, 1, 0, 0, 0, 1}, {4, 0, 0, 3, 2, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}};
         Matrix m1 = new Matrix(m);
         System.out.println(m1);
         m1.setAllDenominatorsToCommonDenomionator();
-        System.out.println(m1);
-        m1.fillRowWeight();
         m1.findRowWeight();
-        System.out.println(m1.rowWeightToString());
+        m1.stackRowWeight();
+        m1.findRowWeight();
+        System.out.println(m1);
+        m1.outputTerminalState();
+        //System.out.println(m1.rowWeightToString());
+
+
+        /*
+        Fraction f1=new Fraction(1,3);
+        Fraction f2=new Fraction(1,2);
+
+        System.out.println(m1.addFractions(f1,f2));
+        */
     }
 }
