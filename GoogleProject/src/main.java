@@ -83,30 +83,31 @@ Output:
     */
     public static void main(String[] args) {
         //int[][] m ={{0, 2, 1, 0, 0}, {0, 0, 0, 3, 4}, {0, 0, 0, 0, 0}, {0, 0, 0, 0,0}, {0, 0, 0, 0, 0}};
-        int[][] m = {
+        /*int[][] m = {
                 {0, 1, 0, 3, 0},
                 {4, 0, 2, 0, 0},
-                {0, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0},
                 {3, 0, 0, 0, 2},
                 {0, 0, 0, 0, 0}
-        };
+        };*/
         //int[][] m = {{0, 1, 0, 0, 0, 1}, {4, 0, 0, 3, 2, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}};
+        int[][] m = {{0, 3, 1, 0, 0, 0},
+                     {0, 0, 2, 2, 0, 0},
+                     {0, 0, 0, 0, 1, 0},
+                     {0, 0, 0, 2, 0, 1},
+                     {0, 0, 0, 0, 0, 0},
+                     {0, 0, 0, 0, 0, 0}};
         Matrix m1 = new Matrix(m);
+
         System.out.println(m1);
-        m1.setAllDenominatorsToCommonDenomionator();
-        m1.findRowWeight();
-        m1.stackRowWeight();
-        m1.findRowWeight();
+
+        m1.stackStateWeight();
+
         System.out.println(m1);
-        m1.outputTerminalState();
-        //System.out.println(m1.rowWeightToString());
+
+        System.out.println(m1.findCommonDenominator());
 
 
-        /*
-        Fraction f1=new Fraction(1,3);
-        Fraction f2=new Fraction(1,2);
 
-        System.out.println(m1.addFractions(f1,f2));
-        */
     }
 }
